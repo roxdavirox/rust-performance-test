@@ -1,5 +1,6 @@
 use axum::{routing::get, Router};
 use std::net::SocketAddr;
+use hyper::Server;
 
 #[tokio::main]
 async fn main() {
@@ -8,5 +9,8 @@ async fn main() {
 
     println!("🚀 Listening on {}", addr);
 
-    axum::serve(addr, app).await.unwrap();
+    Server::bind(&addr)
+        .serve(app.into_make_service())
+        .await
+        .unwrap();
 }
