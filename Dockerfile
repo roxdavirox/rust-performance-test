@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copia só o Cargo.toml e Cargo.lock primeiro para aproveitar cache
-COPY Cargo.toml Cargo.lock ./
+COPY Cargo.toml ./
 RUN mkdir src && echo "fn main() {}" > src/main.rs
 RUN cargo build --release --target x86_64-unknown-linux-musl
 
