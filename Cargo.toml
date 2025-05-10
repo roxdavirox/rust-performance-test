@@ -4,8 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-# Axum com suporte a serve()
-axum = { version = "0.6.20", features = ["http1", "json", "tokio"] }
+# HTTP server
+axum = { version = "0.6.20", default-features = false, features = ["http1", "json"] }
+
+# HTTP server low-level
+hyper = "0.14"
 
 # Async runtime
 tokio = { version = "1.28", features = ["full"] }
