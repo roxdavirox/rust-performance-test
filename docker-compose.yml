@@ -14,12 +14,27 @@ services:
     networks:
       - backend
 
-  app:
+  api1:
     build: .
+    image: rinha-api:local
     cpus: 1.0
     mem_limit: 512m
     expose:
-      - "3000"
+      - "80"
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/rinha
+    depends_on:
+      - db
+    networks:
+      - backend
+
+  api2:
+    image: rinha-api:local
+    # build: .
+    cpus: 1.0
+    mem_limit: 512m
+    expose:
+      - "80"
     environment:
       DATABASE_URL: postgres://postgres:password@db:5432/rinha
     depends_on:
@@ -36,7 +51,8 @@ services:
     ports:
       - "9999:9999"
     depends_on:
-      - app
+      - api1
+      - api2
     networks:
       - backend
 

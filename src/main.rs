@@ -5,7 +5,7 @@ use std::net::SocketAddr;
 async fn main() {
     let app = Router::new().route("/", get(|| async { "Hello from Axum!" }));
 
-    let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
+    let addr = SocketAddr::from(([0, 0, 0, 0], 80));
     println!("🚀 Listening on http://{}", addr);
 
     Server::bind(&addr)
