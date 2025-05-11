@@ -10,7 +10,8 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: rinha
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      # - db_data:/var/lib/postgresql/data
     networks:
       - backend
 

@@ -1,4 +1,4 @@
-FROM rust:1.70-slim AS builder
+FROM rust:1.82-slim AS builder
 
 # Instala dependências mínimas para compilar com musl
 RUN apt-get update && apt-get install -y \
