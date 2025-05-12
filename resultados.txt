@@ -1,40 +1,57 @@
 
+         /\      Grafana   /‾‾/
+    /\  /  \     |\  __   /  /
+   /  \/    \    | |/ /  /   ‾‾\
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/
+
+     execution: local
+        script: create-users-test.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 600 max VUs, 3m55s max duration (incl. graceful stop):
+              * criacao_consulta: Up to 600.00 iterations/s for 3m25s over 3 stages (maxVUs: 100-600, gracefulStop: 30s)
+
+WARN[0096] Insufficient VUs, reached 600 active VUs and cannot initialize more  executor=ramping-arrival-rate scenario=criacao_consulta
+
 
   █ THRESHOLDS
 
     http_req_duration
-    ✗ 'p(95)<200' p(95)=15.52s
+    ✗ 'p(95)<200' p(95)=6.37s
 
     http_req_failed
-    ✗ 'rate<0.01' rate=49.29%
+    ✓ 'rate<0.01' rate=0.00%
 
 
   █ TOTAL RESULTS
 
-    checks_total.......................: 61206  291.455056/s
-    checks_succeeded...................: 50.70% 31034 out of 61206    
-    checks_failed......................: 49.29% 30172 out of 61206    
+    checks_total.......................: 26158   125.956242/s
+    checks_succeeded...................: 100.00% 26158 out of 26158
+    checks_failed......................: 0.00%   0 out of 26158
 
-    ✗ status is 201
-      ↳  50% — ✓ 15517 / ✗ 15086
-    ✗ body has id
-      ↳  50% — ✓ 15517 / ✗ 15086
+    ✓ status é válido
 
     HTTP
-    http_req_duration.......................................................: avg=3.18s min=0s     med=114ms    max=1m0s   p(90)=1.43s p(95)=15.52s
-      { expected_response:true }............................................: avg=1.69s min=1.98ms med=825.84ms max=59.99s p(90)=1.32s p(95)=3.31s
-    http_req_failed.........................................................: 49.29% 15086 out of 30603
-    http_reqs...............................................................: 30603  145.727528/s
+    http_req_duration.......................................................: avg=2.66s min=880µs med=2.62s max=8.88s p(90)=5.75s p(95)=6.37s
+      { expected_response:true }............................................: avg=2.66s min=880µs med=2.62s max=8.88s p(90)=5.75s p(95)=6.37s
+    http_req_failed.........................................................: 0.00%  0 out of 26158
+    http_reqs...............................................................: 26158  125.956242/s
 
     EXECUTION
-    iteration_duration......................................................: avg=3.18s min=0s     med=121.16ms max=1m0s   p(90)=1.45s p(95)=15.52s
-    iterations..............................................................: 30603  145.727528/s
-    vus.....................................................................: 39     min=39             max=500
-    vus_max.................................................................: 500    min=500            max=500
+    dropped_iterations......................................................: 28383  136.670083/s
+    iteration_duration......................................................: avg=2.66s min=1ms   med=2.62s max=8.88s p(90)=5.75s p(95)=6.37s
+    iterations..............................................................: 26158  125.956242/s
+    vus.....................................................................: 164    min=0          max=600
+    vus_max.................................................................: 600    min=100        max=600
 
     NETWORK
-    data_received...........................................................: 8.4 MB 40 kB/s
-    data_sent...............................................................: 8.8 MB 42 kB/s\\\
+    data_received...........................................................: 6.8 MB 33 kB/s
+    data_sent...............................................................: 7.6 MB 37 kB/s
 
 
-    
+
+
+running (3m27.7s), 000/600 VUs, 26158 complete and 0 interrupted iterations
+criacao_consulta ✓ [======================] 000/600 VUs  3m25s  599.99 iters/s
+ERRO[0208] thresholds on metrics 'http_req_duration' have been crossed
