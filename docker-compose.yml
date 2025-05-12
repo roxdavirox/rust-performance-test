@@ -18,6 +18,7 @@ services:
 
   api1:
     build: .
+    platform: linux/amd64
     image: rinha-api:local
     cpus: 0.35
     mem_limit: 640m
@@ -36,12 +37,14 @@ services:
 
   api2:
     image: rinha-api:local
+    platform: linux/amd64
     cpus: 0.35
     mem_limit: 512m
     environment:
       DATABASE_URL: postgres://postgres:password@db:5432/rinha
     depends_on:
       - db
+      - api1
     networks:
       - backend
     sysctls:

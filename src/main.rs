@@ -1,6 +1,7 @@
 use axum::{routing::post, Router};
 use sqlx::postgres::PgPoolOptions;
 use std::{net::SocketAddr};
+use num_cpus;
 
 mod db;
 mod models;
@@ -8,7 +9,7 @@ mod handlers;
 
 fn main() {
 	tokio::runtime::Builder::new_multi_thread()
-		.worker_threads(4)
+		.worker_threads(num_cpus::get())
 		.enable_all()
 		.build()
 		.unwrap()
@@ -17,8 +18,8 @@ fn main() {
 
 async fn async_main() {
 	let pool = PgPoolOptions::new()
-		.max_connections(24)
-		.min_connections(8)
+		.max_connections(100)
+		.min_connections(20)
 		.connect("postgres://postgres:password@db:5432/rinha")
 		.await
 		.expect("❌ Falha ao conectar no banco de dados");

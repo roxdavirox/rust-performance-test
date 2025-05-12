@@ -1,4 +1,4 @@
-# Etapa de build
+# Etapa de build (com arquitetura explícita)
 FROM rust:1.82-slim AS builder
 
 RUN apt-get update && apt-get install -y \
