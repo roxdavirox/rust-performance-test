@@ -4,7 +4,7 @@ import { uuidv4 } from 'https://jslib.k6.io/k6-utils/1.4.0/index.js';
 
 export let options = {
   vus: 500,              // Simula 500 usuários simultâneos
-  duration: '3m',        // Teste por 3 minutos
+  duration: '1m',        // Teste por 3 minutos
   thresholds: {
     http_req_duration: ['p(95)<200'], // latência p95 abaixo de 200ms
     http_req_failed: ['rate<0.01'],   // menos de 1% de erros

@@ -8,6 +8,7 @@ use crate::{db::criar_pessoa, models::NovaPessoa};
 use sqlx::PgPool;
 use serde_json::json;
 
+#[tracing::instrument(name = "POST /pessoas", skip(pool, payload))]
 pub async fn post_pessoa(
     State(pool): State<PgPool>,
     Json(payload): Json<NovaPessoa>,
