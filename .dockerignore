@@ -1,0 +1,43 @@
+# Ignorar controle de versão
+.git
+.gitignore
+
+# Node/npm/yarn/cache
+node_modules
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos do sistema e editor
+.DS_Store
+*.swp
+*.swo
+*.bak
+*.tmp
+*.old
+*.orig
+*.lock
+.idea
+.vscode
+*.code-workspace
+
+# Diretórios comuns de build
+target/
+dist/
+build/
+coverage/
+
+# Arquivos de testes e exemplos
+*.test.*
+*.spec.*
+tests/
+examples/
+
+# Docker
+.dockerignore
+Dockerfile*
+
+# Arquivos do Mac
+.AppleDouble
+.LSOverride

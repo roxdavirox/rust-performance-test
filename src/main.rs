@@ -19,7 +19,7 @@ fn main() {
 async fn async_main() {
 	let pool = PgPoolOptions::new()
 		.max_connections(100)
-		.min_connections(20)
+		.min_connections(50)
 		.connect("postgres://postgres:password@db:5432/rinha")
 		.await
 		.expect("❌ Falha ao conectar no banco de dados");
