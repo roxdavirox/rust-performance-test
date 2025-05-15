@@ -14,6 +14,9 @@ RUN cargo build --release --target x86_64-unknown-linux-musl
 
 # Agora copia todo o código e compila de verdade
 COPY . .
+
+# builda as dependencias estaticamente 
+ENV RUSTFLAGS="-C target-feature=+crt-static"
 RUN cargo build --release --target x86_64-unknown-linux-musl
 
 # Etapa de execução mínima
