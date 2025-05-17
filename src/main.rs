@@ -18,7 +18,7 @@ fn main() {
 
 async fn async_main() {
 	let pool = PgPoolOptions::new()
-		.max_connections(50)
+		.max_connections(40)
 		.min_connections(5)
 		.connect("postgres://postgres:password@db:5432/rinha")
 		.await
