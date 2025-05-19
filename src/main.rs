@@ -1,4 +1,4 @@
-use axum::{routing::post, Router};
+use axum::{routing::{post, get}, Router};
 use sqlx::postgres::PgPoolOptions;
 use std::{net::SocketAddr};
 use num_cpus;
@@ -26,6 +26,9 @@ async fn async_main() {
 
     let app = Router::new()
         .route("/pessoas", post(handlers::post_pessoa))
+        .route("/pessoas", get(handlers::search_pessoas))
+        .route("/pessoas/:id", get(handlers::get_pessoa_by_id))
+        .route("/contagem-pessoas", get(handlers::contagem_pessoas))
         .with_state(pool);
 
     let addr = SocketAddr::from(([0, 0, 0, 0], 80));

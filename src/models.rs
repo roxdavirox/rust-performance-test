@@ -9,7 +9,7 @@ pub struct NovaPessoa {
     pub stack: Option<Vec<String>>,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, sqlx::FromRow)]
 pub struct Pessoa {
     pub id: Uuid,
     pub apelido: String,

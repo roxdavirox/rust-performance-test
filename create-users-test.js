@@ -39,12 +39,36 @@ export default function () {
 
   const headers = { 'Content-Type': 'application/json' };
 
-  const res = http.post('http://localhost:9999/pessoas', payload, { headers });
+  const resCreate = http.post('http://localhost:9999/pessoas', payload, { headers });
 
-  check(res, {
+  check(resCreate, {
     // compatível com a Rinha: 201, 400 e 422 são válidos
     'status válido (201|400|422)': (r) => [201, 400, 422].includes(r.status),
     'body has id': (r) => r.body && r.body.includes('id'),
   });
+
+  if (resCreate.status === 201) {
+	const location = resCreate.headers['Location'] || resCreate.headers['location'];
+	const id = location?.split('/').pop();
+
+	if (id) {
+		const resGet = http.get(`http://localhost:9999/pessoas/${id}`);
+		check(resGet, {
+			'GET /pessoas/:id status 200': (r) => r.status === 200,
+			'GET /pessoas:id body has id': (r) => r.body.includes(id),
+		});
+
+		const resSearch = http.get(`http://localhost:9999/pessoas?t=${apelido.slice(0, 5)}`);
+		check(resSearch, {
+			'GET /pessoas?t=... status 200': (r) => r.status === 200,
+		});
+	}
+
+	const resCount = http.get('http://localhost:9999/contagem-pessoas');
+	check(resCount, {
+		'GET /contagem-pessoas status 200': (r) => r.status === 200,
+	});
+  }
 }
+
 
