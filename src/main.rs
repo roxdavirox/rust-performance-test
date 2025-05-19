@@ -9,7 +9,7 @@ mod handlers;
 
 fn main() {
 	tokio::runtime::Builder::new_multi_thread()
-		.worker_threads(1)
+		.worker_threads(2)
 		.enable_all()
 		.build()
 		.unwrap()
@@ -19,7 +19,7 @@ fn main() {
 async fn async_main() {
 	let pool = PgPoolOptions::new()
 		.max_connections(40)
-		.min_connections(5)
+		.min_connections(10)
 		.connect("postgres://postgres:password@db:5432/rinha")
 		.await
 		.expect("❌ Falha ao conectar no banco de dados");
